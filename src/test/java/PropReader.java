@@ -1,10 +1,12 @@
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class PropReader {
-    private  static Properties properties;
-    static {
-        String path = "src/test/resources/info.properties";
+public enum PropReader {
+
+    CONFIGURATION( "src/test/resources/info.properties");
+    private  Properties properties;
+     PropReader(String path){
+
         try {
            FileInputStream inputStream = new FileInputStream(path);
            properties = new Properties();
@@ -13,7 +15,15 @@ public class PropReader {
             exception.printStackTrace();
         }
     }
-    public static String getProperty(String key){
+    private  String getProperty(String key){
         return  properties.getProperty(key);
     }
+    public static String getProperty(PropReader propReader, String key){
+        return propReader.getProperty(key);
+    }
+
+    public static String getProperty(PropReader propReader, String key, String param){
+       return propReader.getProperty(key)+param;
+    }
+
 }

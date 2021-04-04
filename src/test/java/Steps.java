@@ -24,12 +24,12 @@ public class Steps {
 //    }
     @Test
     public void positiveTest() throws IOException, URISyntaxException {
-        HttpResponse response = MyResponse.Response("filmsPath");
+        HttpResponse response = MyResponse.Response(PropReader.getProperty(PropReader.CONFIGURATION,"filmsPath"));
         Assert.assertEquals(200,response.getStatusLine().getStatusCode());
     }
     @Test
     public void negativePeopleTest() throws IOException, URISyntaxException {
-        HttpResponse response = MyResponse.Response("negativePeoplePath");
+        HttpResponse response = MyResponse.Response(PropReader.getProperty(PropReader.CONFIGURATION, "filmsPath", "trt"));
         Assert.assertEquals(404,response.getStatusLine().getStatusCode());
     }
 }
